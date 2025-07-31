@@ -40,6 +40,12 @@ def main():
         for drw in drawable:
             drw.draw(screen)
 
+        for ast in asteroids:
+            if ast.check_col(player):
+                print("Game over!")
+                sys.exit()
+    
+
 
         pygame.display.flip()
         dt = clock.tick(60) / 1000
