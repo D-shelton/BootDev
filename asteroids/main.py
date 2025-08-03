@@ -14,9 +14,11 @@ def main():
 
     pygame.init()
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
-    
     clock = pygame.time.Clock()
+    font = pygame.font.Font(None, 24)
+
     dt = 0
+    score = 0
 
     updatable = pygame.sprite.Group()
     drawable = pygame.sprite.Group()
@@ -53,6 +55,11 @@ def main():
                 if shot.check_col(ast):
                     shot.kill()
                     ast.split()
+                    score +=1
+
+        score_text = font.render(f"Score: {score}", True, (255, 255, 255))
+        score_rect = score_text.get_rect(center=(screen.get_width() * 0.95, screen.get_height() * 0.05))
+        screen.blit(score_text, score_rect)
 
         pygame.display.flip()
         dt = clock.tick(60) / 1000
